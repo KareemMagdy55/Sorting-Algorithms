@@ -9,8 +9,8 @@ typedef long long ll;
 using namespace std;
 
 const int sizes[] = { 50};
-const int lb = 0; // lower bound of the array elements
-const int up = 1000; // upper bound of the array elements
+const int lb = 0; // lower bound of array's elements
+const int up = 1000; // upper bound of array's elements
 
 template<class T>
 T* fillArr(ll n, ll upperLimit){
