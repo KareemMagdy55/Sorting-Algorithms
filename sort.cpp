@@ -98,36 +98,44 @@ namespace sortLib {
 
 
     template<typename T>
-    int make_pivot(T arr[], ll size, int start, int end) {
-        int mid = start + (end - start) / 2;
+    int make_pivot(T arr[], ll size ,int start,int end)
+    {
+        int mid = start + (end-start)/2;
         T pivot = arr[mid];
         int count = 0;
-        for (int i = start; i <= end; i++) {
-            if (arr[i] < pivot)count++;
+        for(int i=start;i<=end;i++)
+        {
+            if(arr[i]<pivot)count++;
         }
         int pivot_indix = start + count;
-        swap(arr[pivot_indix], arr[mid]);
-        for (int s = start, e = end; s < pivot_indix && e > pivot_indix; s++, e--) {
-            while (arr[s] < pivot_indix)s++;
-            while (arr[e] > pivot_indix)e--;
-            if (arr[e] < pivot_indix && arr[s] > pivot_indix)swap(arr[s], arr[e]);
+        swap(arr[pivot_indix],arr[mid]);
+        for (int s = start, e = end; s < pivot_indix && e > pivot_indix;) {
+            if (arr[s]<pivot)s++;
+            else if(arr[e]>pivot)e--;
+            else {
+                swap(arr[s++],arr[e--]);
+            }
         }
 
         return pivot_indix;
     }
 
+
     template<typename T>
-    void quick_sort(T arr[], ll size, int start, int end) {
-        if (start >= end)return;
-        int pivot_indix = make_pivot(arr, size, start, end);
-        quick_sort(arr, size, start, pivot_indix - 1);
-        quick_sort(arr, size, pivot_indix + 1, end);
+    void quick_sort(T arr[],ll size , int start,int end)
+    {
+        if(start>=end)return;
+        int pivot_indix = make_pivot(arr,size,start,end);
+        quick_sort(arr,size,start,pivot_indix-1);
+        quick_sort(arr,size,pivot_indix+1,end);
     }
 
     template<typename T>
-    void quickSort(T arr[], ll size) {
-        quick_sort(arr, size, 0, size - 1);
+    void quickSort(T arr[], ll size)
+    {
+        quick_sort(arr,size,0,size-1);
     }
+
 
 
     template<typename T>
