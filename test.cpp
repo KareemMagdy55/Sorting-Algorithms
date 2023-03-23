@@ -8,12 +8,12 @@
 typedef long long ll;
 using namespace std;
 
-const int sizes[] = { 50};
+const int sizes[] = { 200, 500, 1000,5000, 10000, 20000, 50000};
 const int lb = 0; // lower bound of array's elements
 const int up = 1000; // upper bound of array's elements
 
 template<class T>
-T* fillArr(ll n, ll upperLimit){
+T* fillArr(ll n){
     T* arr = new T[n];
     for (int i = 0; i < n; ++i) {
         long double random_double = lb + ( long double)rand() / (( long double)RAND_MAX / (up - lb));
@@ -41,7 +41,7 @@ void test(T arr[], ll n, const function<void(T arr[], ll n)>& sortAlgo){
 }
 template<class T>
 void mainTest(ll n, const function<void(T arr[], ll n)>& sortAlgo){
-    T* arr = fillArr<T>(n, up);
+    T* arr = fillArr<T>(n);
     test(arr, n ,sortAlgo);
     delete[] arr;
 

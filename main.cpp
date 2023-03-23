@@ -4,9 +4,9 @@
 
 typedef int testType ;
 using namespace std ;
-
+using namespace sortLib;
 int main() {
-    auto sortingAlgorithm = bubbleSort<testType>;
+    auto sortingAlgorithm = quickSort<testType>;
 
     //    testAll(sortingAlgorithm);
     testSize<testType>(30 ,sortingAlgorithm);
