@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <cstring>
 #define sz(arr) sizeof (arr) / sizeof ( arr[0])
 #define align   cout << "===============================================\n";
 using namespace std;
@@ -150,24 +151,25 @@ namespace sortLib {
 
 
     template<typename T>
-    void countSort(T arr[] , int size){
-        int max = *std::max_element(arr,arr+size);
-        int min = *std::min_element(arr,arr+size);
+    void countSort(T arr[], int size) {
+        int max = *std::max_element(arr, arr + size);
+        int min = *std::min_element(arr, arr + size);
 
-        int count_size = max-min+1;
+        int count_size = max - min + 1;
         int count[count_size];
+        memset(count, 0, sizeof(count)); // initialize count array with zeros
         for (int i = 0; i < size; ++i) {
             count[arr[i] - min]++;
         }
         for (int i = 1; i < count_size; ++i) {
-            count[i] += count[i-1];
+            count[i] += count[i - 1];
         }
 
         // create result array
         T res[size];
-        for (int i = size-1; i>=0 ; --i) {
-            res[count[arr[i]-min]-1] = arr[i];
-            count[arr[i]-min]--;
+        for (int i = size - 1; i >= 0; --i) {
+            res[count[arr[i] - min] - 1] = arr[i];
+            count[arr[i] - min]--;
         }
         for (int i = 0; i < size; ++i) {
             arr[i] = res[i];
